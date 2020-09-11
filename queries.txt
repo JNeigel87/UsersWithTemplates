@@ -1,0 +1,50 @@
+Create 3 Users:
+>>> Users.objects.all()
+<QuerySet []>
+>>> Users.objects.create(first_name="John", last_name="Wick", email_address="BoogeyMan11@gmail.com", age=33)
+<Users: Users object (1)>
+>>> Users.objects.create(first_name="Jason", last_name="Bourne", email_address="Ghost33@yahoo.com", age=42)
+<Users: Users object (2)>
+>>> Users.objects.create(first_name="Memphis", last_name="Reigns", email_address="Unicorn67@hotmail.com", age=46)
+<Users: Users object (3)>
+>>> Users.objects.all()
+<QuerySet [<Users: Users object (1)>, <Users: Users object (2)>, <Users: Users object (3)>]>
+
+Query: Retrieve all the users:
+>>> Users.objects.all()
+<QuerySet [<Users: Users object (1)>, <Users: Users object (2)>, <Users: Users object (3)>]>
+
+Query: Retrieve the last user:
+>>> Users.objects.last()
+<Users: Users object (3)>
+
+Query: Retrieve the first user:
+>>> Users.objects.first()
+<Users: Users object (1)>
+
+Query: Change the user with id=3 so their last name is Pancakes.
+>>> user_to_update = Users.objects.get(id=3)
+>>> user_to_update.last_name = "Pancakes"
+>>> user_to_update.save()
+>>> Users.objects.last()
+
+Query: Delete the user with id=2 from the database:
+>>> Users.objects.all()
+<QuerySet [<Users: Users object (1)>, <Users: Users object (2)>, <Users: Users o
+bject (3)>]>
+>>> user_to_delete = Users.objects.get(id=2)
+>>> user_to_delete.delete()
+(1, {'usersApp.Users': 1})
+>>> Users.objects.all()
+<QuerySet [<Users: Users object (1)>, <Users: Users object (3)>]>
+>>>
+
+Query: Get all the users, sorted by their first name:
+>>> Users.objects.all().order_by("first_name")
+<QuerySet [<Users: Users object (1)>, <Users: Users object (3)>]>
+>>>
+
+Bonues Query: Get All the Users, Sorted by their first name in descending order:
+>>> Users.objects.all().order_by("-first_name")
+<QuerySet [<Users: Users object (3)>, <Users: Users object (1)>]>
+>>>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Index</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/users.css' %}">
+    <!-- <script src="{% static 'js/script.js' %}"></script> -->
+    <title>Users Assignment</title>
+</head>
+<body>
+    <h1>All Users</h1>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>E-Mail</th>
+            <th>Age</th>
+        </tr>
+        {% for users in all_the_users %}
+        <tr>
+            <td>{{ users.id }}</td>
+            <td>{{ users.first_name }}</td>
+            <td>{{ users.last_name }}</td>
+            <td>{{ users.email_address }}</td>
+            <td>{{ users.age }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <form action="/create" method="post">
+        {% csrf_token %}
+        <p>First Name: <input type="text" name="first name" /></p>
+        <p>Last Name: <input type="text" name="last name" /></p>
+        <p>E-mail: <input type="text" name="email address" /></p>
+        <p>Age: <input type="number" name="age" /></p>
+        <input type="submit" value="Add User" />
+    </form>
+</body>
+</html>
+
+<!-- {% for users in all_the_users %}
+        <li>{{users.first_name}}</li>
+    {% endfor %}
